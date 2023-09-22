@@ -9,8 +9,8 @@
 - See the performance of the algorithm
 - Download data and model
 ## Benefits:
--Easy to use: No coding required
--Comprehensive: Covers all aspects of data cleaning, visualization, and modeling
--Flexible: Users can choose the methods that are best for their specific needs
+- Easy to use: No coding required
+- Comprehensive: Covers all aspects of data cleaning, visualization, and modeling
+- Flexible: Users can choose the methods that are best for their specific needs
 ## Conclusion:
 This website is a valuable tool for anyone who needs to clean, visualize, and model their data. It is easy to use, comprehensive, and flexible.
