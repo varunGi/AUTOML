@@ -50,6 +50,7 @@ with st.sidebar:
     st.info("This project application helps you build and explore your data.")
 
 if choice == "Introduction":
+
     st.write("# Welcome to machine learning project platform! 👋")
     st.markdown("""
     At our website, we offer a comprehensive suite of tools and features to assist you in your data-driven projects. Whether you're a data enthusiast, a business analyst, or a machine learning practitioner, our platform is designed to streamline your workflow and help you make insightful decisions from your data.
@@ -102,6 +103,15 @@ if choice == "Introduction":
     Join us in exploring the power of data analysis and machine learning! Our platform is your gateway to uncovering hidden insights, making data-driven decisions, and bringing your projects to new heights. Let's embark on this exciting journey together!""")
 
 if choice == "Upload":
+    components.html("""
+                    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5056338602918094"
+     crossorigin="anonymous"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+                    """)
     st.title("Upload Your Dataset")
     file = st.file_uploader("Upload Your Dataset")
     if file:
@@ -137,7 +147,7 @@ if choice == "Upload":
 
 if choice == "Cleaning":
     if not os.path.exists('./dataset.csv'):
-        st.subheader("Go To Upload File")
+        st.subheader("Go To Upload Page")
     else:
         remove_cols = st.multiselect("Do you want to remove any columns", df.columns)
         ava_col = []
@@ -260,9 +270,9 @@ if choice == "Data visualization":
         st.title("Data visualization")
         t = pivot_ui(df)
         with open(t.src) as t:
-            components.html(t.read(), width=900, height=1000, scrolling=True)
+            components.html(t.read(), width=1000, height=1000, scrolling=True)
         pyg_html = pyg.to_html(df)
-        components.html(pyg_html, height=1000, scrolling=True)
+        components.html(pyg_html, height=1200,width=1200, scrolling=True)
     else:
         if os.path.exists('./dataset.csv'):
             # df = pd.read_csv("./dataset.csv")
@@ -270,9 +280,9 @@ if choice == "Data visualization":
             st.title("Pivot Table")
             t = pivot_ui(df)
             with open(t.src) as t:
-                components.html(t.read(), width=900, height=1000, scrolling=True)
+                components.html(t.read(), width=1200, height=1200, scrolling=True)
         else:
-            st.subheader("GO To Upload File")
+            st.subheader("GO To Upload Page")
 
 if choice == "Profiling":
     if os.path.exists('./data.csv'):
@@ -287,7 +297,7 @@ if choice == "Profiling":
             profile = ProfileReport(df)
             st_profile_report(profile)
         else:
-            st.subheader("GO To Upload File")
+            st.subheader("GO To Upload Page")
 
 if choice == "Modelling":
     snow=False
@@ -330,7 +340,6 @@ if choice == "Modelling":
                                              "Lasso Regression", "Gaussian Regression", "KNN Regression", "AdaBoost"])
 
                 if True:
-                    snow=True
                     table = {"Algorithm": [], "MAE": [], "RMSE": [], "R2 Score": []}
                     for algorithm in algorithms:
                         if algorithm == "Linear Regression":
@@ -481,6 +490,7 @@ if choice == "Modelling":
                             table["R2 Score"].append(r2score)
                             pickle.dump(reg, open('ABR.pkl', 'wb'))
                     if st.button('Run Modelling'):
+                        snow=True
                         df_results = pd.DataFrame(table)
 
             elif "Classification" in choice1:
@@ -495,7 +505,15 @@ if choice == "Modelling":
                 y_test = y_test.apply(lambda x: label[x])
                 y_train = y_train.apply(lambda x: label[x])
                 algorithms = st.multiselect("Classification Algorithms", ["Logistic Regression", "Decision Trees",
-                                                                       "Elastic Net", "Lasso Regression"])
+                                                                          "Random Forest","Naive Bayes",
+                                                                          "Support Vector Machines (SVM)",
+                                                                          "Gradient Boosting","Neural Networks",
+                                                                          "Quadratic Discriminant Analysis (QDA)"
+                                                                          "Adaptive Boosting (AdaBoost)",
+                                                                          "Gaussian Processes","Perceptron",
+                                                                          "KNN Classifier","Ridge Classifier",
+                                                                          "Passive Aggressive Classifier",
+                                                                          "Elastic Net", "Lasso Regression"])
 
                 if True:
                     snow=True
@@ -775,6 +793,7 @@ if choice == "Modelling":
                             table["F1-Score"].append(f1)
                             pickle.dump(reg, open('LAR.pkl', 'wb'))
                     if st.button('Run Modelling'):
+                        snow=True
                         df_results = pd.DataFrame(table)
 
         with col2:
