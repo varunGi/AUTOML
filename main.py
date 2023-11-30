@@ -52,6 +52,20 @@ with st.sidebar:
 if choice == "Introduction":
 
     st.write("# Welcome to machine learning project platform! 👋")
+    ad_code=""" <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5056338602918094"
+     crossorigin="anonymous"></script>
+<!-- ad2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5056338602918094"
+     data-ad-slot="4692551330"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+     """
+components.html(ad_code, height=600)
     st.markdown("""
     At our website, we offer a comprehensive suite of tools and features to assist you in your data-driven projects. Whether you're a data enthusiast, a business analyst, or a machine learning practitioner, our platform is designed to streamline your workflow and help you make insightful decisions from your data.
     
